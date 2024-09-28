@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Generator</title>
+</head>
+<body>
+    <h1>Student Grade Generator</h1>
+    <form id="gradeForm">
+        <label for="marks">Enter your marks:</label>
+        <input type="number" id="marks" min="0" 
+        max="100" placeholder="Marks">
+        <button type="button" id="myBtn">Submit</button>
+    </form>
+    <div id="solution"></div>
+
+    <script>
+        let myBtn = document.getElementById("myBtn");
+        
+        myBtn.addEventListener('click', function() {
+            let solution = document.getElementById("solution");
+            let marks = document.getElementById("marks").value;
+
+            if(marks >= 80 && marks <= 100){
+                solution.innerHTML = "Grade A...Congrats🎊🍾👏";
+                return;
+            }else if(marks >= 60 && marks <= 79){
+                solution.innerHTML = "Grade B...Nice👏";
+                return;
+            }else if (marks >= 50 && marks <= 59){
+                solution.innerHTML = "Grade C...Not bad👍";
+                return;
+            }else if (marks >= 40 && marks <= 49){
+                solution.innerHTML = "Grade D...Put in more effort!!";
+                return;
+            }else if(marks === "" || marks < 0 || marks > 100) {
+                solution.innerHTML = "Please enter a valid mark between 0 and 100.";
+                return;
+            }else{
+                solution.innerHTML = "Grade E...See me!!⚠️";
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
