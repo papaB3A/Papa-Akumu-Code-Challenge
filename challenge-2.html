@@ -3,14 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Speed Detector</title>
+        <title>Document</title>
 
         <style>
-            #alert{
-                background-color: aquamarine;
+            #totalDemeritPoints{
                 padding: 1em;
-                width: 30%;
-                text-align: center;
             }
         </style>
     </head>
@@ -18,32 +15,61 @@
     <body>
         <h1>Speed Detector</h1>
         <form>
-            <label for="carSpeed">Car Speed:</label>
-            <input type="number" id="carSpeed" placeholder="Speed">
+            <label for="carSpeed">Enter Car Speed:</label>
+            <input type="number" id="carSpeed" max="100" min="0">
+
             <button type="button" id="myBtn">Check</button>
         </form>
-        <br>
-        <div id="alert"></div>
-        <div id="pointsLost">0</div>
-        <div id="totalPointsLost">0</div>
+
+        <!--<div id="alert"></div>-->
+        <div id="totalDemeritPoints"></div>
 
         <script>
-            let myBtn = document.getElementById("myBtn");
+            let myBtn= document.getElementById("myBtn");
 
             myBtn.addEventListener("click", function(){
-                let carSpeed = document.getElementById("carSpeed").value;
-                let alert = document.getElementById("alert");
-                let demerits = 0;
-
+                let carSpeed= document.getElementById("carSpeed").value;
+                //let totalDemeritPoints= document.getElementById("totalDemeritPoints").value;
+                let totalDemeritPoints= document.getElementById("totalDemeritPoints");
                 if(carSpeed <=70){
+                    /*
+                    let alert= document.getElementById("alert");
                     alert.innerHTML= "OK 👍";
-                    return;
-                }   
+                    alert.style.backgroundColor= "aquamarine";
+                    */
+                    totalDemeritPoints.innerHTML= "OK 👍";
+                    totalDemeritPoints.style.backgroundColor= "aquamarine";
+                }else{
+                    //“License suspended”
+                    /*if(carSpeed >70){
+                        //how many km/h above 70(speed limit)?
+                        let speedLimit= 70;
+                        let speedAboveTheLimit= carSpeed- speedLimit;
+                    }*/
+
+                   //how many km/h above 70(speed limit)?
+                   let speedLimit= 70;
+                   let speedAboveTheLimit= carSpeed- speedLimit;
+                   //let totalDemeritPoints= document.getElementById("totalDemeritPoints").value;
+                   let demeritPoints= speedAboveTheLimit/ 5;
+                   //let thaTotalDemeritPoints= totalDemeritPoints.value + demeritPoints;
+
+                   if(demeritPoints> 12){
+                      totalDemeritPoints.innerHTML= "License suspended";
+                      totalDemeritPoints.style.backgroundColor= "red";
+                      totalDemeritPoints.style.color= "white";
+                   }else{
+                      totalDemeritPoints.innerHTML= `Points: ${demeritPoints}`;//"Points: "+ thaTotalDemeritPoints;
+                      totalDemeritPoints.style.backgroundColor= "yellow";
+                      totalDemeritPoints.style.color= "green";
+                   }
+
+                }/*else if(carSpeed <0 || carSpeed=== ""){
+                    alert.innerHTML= "Please enter a valid speed !!";
+                    alert.style.backgroundColor= "red";
+                    //alert.style.backgroundColor= "yellow";
+                }*/
             });
         </script>
     </body>
 </html>
-<!--
- If the speed is less than 70, it should print “Ok”. 
- if points lost are more than 12pts...License suspended”
--->
