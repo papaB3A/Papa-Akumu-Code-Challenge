@@ -3,7 +3,7 @@
 #### Date: 29th September, 2024
 
 ## Description
-    This repository contains solutions to three coding challenges:
+This repository contains solutions to three coding challenges:
 
 1. **Papa's Grade Generator**:
     This  program prompts the user to input his/her student marks. It returns the correct grade based on the input.
@@ -13,11 +13,11 @@
      - Grade D: Marks 40 to 49
      - Grade E: Marks < 40
 
-2. **Speed Detector**:
+2. **Papa's Speed Detector**:
     This program takes the input speed of a car and returns the number of demerit points. The program prints "Ok" if the speed is below 70 km/h. 
     For every 5 km/h above the speed limit of 70 km/h, one demerit point is added. If the demerit points exceed 12, the program prints "License suspended".
 
-3. **Net Salary Calculator**:
+3. **Papa's Net Salary Calculator**:
     This program calculates an individual's net salary by considering basic salary, benefits, and various deductions such as Payee (Tax), NHIF, and NSSF.  
 
 ## Installation
