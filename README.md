@@ -27,7 +27,7 @@
     Git
 
 ### Installation instruction
-    Git clone
+    Git clone git@github.com:papaB3A/Papa-Akumu-Code-Challenge.git
 
 
 ## Technologies used
