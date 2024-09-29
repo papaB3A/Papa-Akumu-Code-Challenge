@@ -6,24 +6,80 @@
         <title>Speed Detector | papaB3A</title>
 
         <style>
-            #result{
+            /*#result{
                 padding: 2em;
                 width: 40%;
+            }*/
+
+            
+            #result{
+                margin-top: 20px;
+                padding: 1em;
+                border-radius: 10px;
+            }
+            
+            /*new*/
+            #container{
+                max-width: 35em;/*400px*/
+                margin: 0 auto;
+                padding: 1.25em;/*1.25em;20px*/
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            }
+
+            .wrapper{
+                display: flex;
+                justify-content: center;
+            }
+
+            #myBtn{
+                border: 1px solid red;
+                background-color: red;
+                padding: 1em;
+                border-radius: 10px;
+                width: 20%;
+                color: #ddd;
+            }
+
+            #myBtn:hover{
+                background-color: rgb(173, 16, 16);
+                border: 1px solid rgb(173, 16, 16);
+            }
+
+            .labels{
+                display: block;
+                text-align: center;
+            }
+
+            input[type= "number"]{
+                width: 95%;
+                padding: 8px;
+                margin: 8px 0;
             }
         </style>
     </head>
 
     <body>
-        <h1>Speed Detector</h1>
+        <div id="container">
+            <div class="wrapper">
+                <h2>Papa's Speed Detector</h2>
+            </div>
         
-        <form>
-            <label for="carSpeed">Enter speed:</label>
-            <input type="number" id="carSpeed">
+            <form>
+                <label class="labels" for="carSpeed">Enter speed:</label>
+                <input type="number" id="carSpeed">
 
-            <button type="button" id="myBtn">Check</button>
-        </form>
-               
-        <div id="result"></div>
+                <div class="wrapper">
+                    <button type="button" id="myBtn">Check</button>
+                </div>
+            </form>
+                
+            <div class="wrapper">
+                <div id="result"></div>
+            </div>
+        </div>
 
         <script>
             let myBtn= document.getElementById("myBtn");

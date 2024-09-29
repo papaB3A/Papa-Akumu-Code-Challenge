@@ -4,13 +4,208 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Net Salary Calculator | papaB3A</title>
+
+        <style>
+            #container{
+                max-width: 35em;/*400px*/
+                margin: 0 auto;
+                padding: 1.25em;/*1.25em;20px*/
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            }
+
+            
+            .labels{
+                display: block;
+                text-align: center;
+            }
+            
+
+            input[type= "number"]{
+                width: 95%;
+                padding: 8px;
+                margin: 8px 0;
+            }
+
+            .wrapper{
+                display: flex;
+                justify-content: center;
+            }
+
+            #myBtn{
+                border: 1px solid red;
+                background-color: red;
+                padding: 1em;
+                border-radius: 10px;
+                width: 20%;
+                color: #ddd;
+            }
+
+            #myBtn:hover{
+                background-color: rgb(173, 16, 16);
+                border: 1px solid rgb(173, 16, 16);
+            }
+
+            #result{
+                margin-top: 20px;
+                padding: 1em;
+                border-radius: 10px;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Net Salary Calculator</h1>
-        <form id="employeeSalary">
-            <label for="">Basic Salary:</label>
-            <input type="number">
-        </form>
+        <div id="container">
+            <div class="wrapper">
+                <h2>Papa's Net Salary Calculator</h2>
+            </div>
+            
+            <form>
+                <label class="labels" for="">Payment Period*</label><br>
+                
+                <div class="wrapper">
+                    <label for="monthly">Monthly</label>
+                    <input type="radio" id="monthly" 
+                    name="paymentPeriod" value="monthly">
+
+                    <label for="yearly">Yearly</label>
+                    <input type="radio" id="yearly" 
+                    name="paymentPeriod" value="yearly">
+                </div>
+                <br><br>
+
+                <label class="labels" for="basicSalary">Basic Salary:</label>
+                <input type="number" id="basicSalary">
+                <label class="labels" for="benefits">Benefits:</label>
+                <input type="number" id="benefits">
+
+                <div class="wrapper">
+                    <button type="button" id="myBtn">Calculate</button>
+                </div>
+            
+            </form>
+
+            <div class="wrapper">
+                <div id="result"></div>
+            </div>
+        </div>
+        <script>
+            let myBtn= document.getElementById("myBtn");
+
+            myBtn.addEventListener("click", function salaryCalculator(){
+                let result= document.getElementById("result");
+                //gross Salary
+                let basicSalary= document.getElementById("basicSalary").value;
+                let benefits= document.getElementById("benefits").value;
+                let grossSalary= parseFloat(basicSalary) + parseFloat(benefits);
+
+                //what was the chosenPaymentPeriod....
+                let chosenPaymentPeriod= getChosenPaymentPeriod();
+
+                //PAYE
+                let payAsYouEarn;
+                switch(chosenPaymentPeriod){
+                    case "monthly":
+                        if(grossSalary >=0 &&grossSalary <=24000){
+                            payAsYouEarn= grossSalary* 0.1;
+                        }else if(grossSalary >=24001 && grossSalary <=32333){
+                            payAsYouEarn= grossSalary* 0.25;
+                        }else if(grossSalary >=32334 && grossSalary <=500000){
+                            payAsYouEarn= grossSalary* 0.3;
+                        }else if(grossSalary >=500001 && grossSalary <=800000){
+                            payAsYouEarn= grossSalary* 0.325;
+                        }else if(grossSalary >=800001){
+                            payAsYouEarn= grossSalary* 0.35;
+                        }
+                        break;
+
+                    case "yearly":
+                        if(grossSalary >=0 &&grossSalary <=288000){
+                            payAsYouEarn= grossSalary* 0.1;
+                        }else if(grossSalary >=288001 && grossSalary <=388000){
+                            payAsYouEarn= grossSalary* 0.25;
+                        }else if(grossSalary >=388001 && grossSalary <=6000000){
+                            payAsYouEarn= grossSalary* 0.3;
+                        }else if(grossSalary >=6000001 && grossSalary <=9600000){
+                            payAsYouEarn= grossSalary* 0.325;
+                        }else if(grossSalary >=9600001){
+                            payAsYouEarn= grossSalary* 0.35;
+                        }
+                        break;
+                }
+
+                //Fringe Benefit Tax
+                let fringeBenefitTax= grossSalary* 0.16;
+
+                //NHIF
+                let nhifPayment;
+                if(grossSalary >=0 &&grossSalary <=5999){
+                    nhifPayment= 150;
+                }else if(grossSalary >=6000 && grossSalary <=7999){
+                    nhifPayment= 300;
+                }else if(grossSalary >=8000 && grossSalary <=11999){
+                    nhifPayment= 400;
+                }else if(grossSalary >=12000 && grossSalary <=14999){
+                    nhifPayment= 500;
+                }else if(grossSalary >=15000 && grossSalary <=19999){
+                    nhifPayment= 600;
+                }else if(grossSalary >=20000 && grossSalary <=24999){
+                    nhifPayment= 750;
+                }else if(grossSalary >=25000 && grossSalary <=29999){
+                    nhifPayment= 850;
+                }else if(grossSalary >=30000 && grossSalary <=34999){
+                    nhifPayment= 900;
+                }else if(grossSalary >=35000 && grossSalary <=39999){
+                    nhifPayment= 950;
+                }else if(grossSalary >=40000 && grossSalary <=44999){
+                    nhifPayment= 1000;
+                }else if(grossSalary >=45000 && grossSalary <=49999){
+                    nhifPayment= 1100;
+                }else if(grossSalary >=50000 && grossSalary <=59999){
+                    nhifPayment= 1200;
+                }else if(grossSalary >=60000 && grossSalary <=69999){
+                    nhifPayment= 1300;
+                }else if(grossSalary >=70000 && grossSalary <=79999){
+                    nhifPayment= 1400;
+                }else if(grossSalary >=80000 && grossSalary <=89999){
+                    nhifPayment= 1500;
+                }else if(grossSalary >=90000 && grossSalary <=99999){
+                    nhifPayment= 1600;
+                }else if(grossSalary >=100000){
+                    nhifPayment= 1700;
+                }
+
+                //NSSF
+                let nssfPayment= grossSalary* 0.06;
+
+                //netSalary
+                let netSalary= grossSalary -(payAsYouEarn + fringeBenefitTax + nhifPayment + nssfPayment);
+
+                result.innerHTML= `
+                    <span>Gross Salary: ksh. ${grossSalary}</span><br>
+                    <span>PAYE: ksh. ${payAsYouEarn}</span><br>
+                    <span>Fringe Benefit Tax: ksh. ${fringeBenefitTax}</span><br>
+                    <span>NHIF Payment: ksh. ${nhifPayment}</span><br>
+                    <span>NSSF Payment: ksh. ${nssfPayment}</span><br>
+                    <span>Net Salary: ksh. ${netSalary}</span><br>
+                `;
+                result.style.backgroundColor= "aquamarine";
+            });
+
+            function getChosenPaymentPeriod(){
+                let paymentPeriod= document.getElementsByName("paymentPeriod");
+                let chosenPaymentPeriod;
+
+                for(i=0; i< paymentPeriod.length; i++){
+                    if(paymentPeriod[i].checked){
+                        chosenPaymentPeriod= paymentPeriod[i].value;
+                        return chosenPaymentPeriod;
+                    }
+                }
+                //return chosenPaymentPeriod;
+            }
+        </script>
     </body>
 </html>

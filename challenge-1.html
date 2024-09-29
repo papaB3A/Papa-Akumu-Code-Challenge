@@ -4,19 +4,75 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Student Grade Generator | papaB3A</title>
+
+        <style>
+            #container{
+                max-width: 35em;/*400px*/
+                margin: 0 auto;
+                padding: 1.25em;/*1.25em;20px*/
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            }
+
+            .labels{
+                display: block;
+                text-align: center;
+            }
+
+            input[type= "number"]{
+                width: 95%;
+                padding: 8px;
+                margin: 8px 0;
+            }
+
+            .wrapper{
+                display: flex;
+                justify-content: center;
+            }
+
+            #myBtn{
+                border: 1px solid red;
+                background-color: red;
+                padding: 1em;
+                border-radius: 10px;
+                width: 20%;
+                color: #ddd;
+            }
+
+            #myBtn:hover{
+                background-color: rgb(173, 16, 16);
+                border: 1px solid rgb(173, 16, 16);
+            }
+
+            #grade{
+                margin-top: 20px;
+                padding: 1em;
+                border-radius: 10px;
+                color: black;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Student Grade Generator</h1>
-        <form>
-            <label for="marks">Enter Marks:</label>
-            <input type="number" max="100" 
-            min="0" id="marks">
+        <div id="container">
+            <div class="wrapper">
+                <h2>Papa's Grade Generator</h2>
+            </div>
+            <form>
+                <label class="labels" for="marks">Enter Marks:</label>
+                <input type="number" max="100" 
+                min="0" id="marks">
 
-            <button type="button" id="myBtn">Submit</button>
-        </form>
+                <div class="wrapper">
+                    <button type="button" id="myBtn">Submit</button>
+                </div>
+            </form>
 
-        <div id="grade"></div>
+            <div id="grade"></div>
+        </div>
+        
 
         <script>
             let myBtn= document.getElementById("myBtn");
@@ -27,15 +83,23 @@
 
                 if(marks >=80 && marks <=100){
                     grade.innerHTML= "Grade A...Congrats🎊🍾🥳";
+                    grade.style.backgroundColor= "aquamarine";
                 }else if(marks >=60 && marks <=79){
+                    grade.style.backgroundColor= "aquamarine";
                     grade.innerHTML= "Grade B...Nice👏";
                 }else if(marks >=50 && marks <=59){
                     grade.innerHTML= "Grade C...Not Bad👍";
+                    grade.style.backgroundColor= "yellow";
                 }else if(marks >=40 && marks <=49){
                     grade.innerHTML= "Grade D...Put in more Effort!!";
+                    grade.style.backgroundColor= "orange";
                 }else if(marks >100 || marks <0 || marks=== ""){
+                    grade.style.backgroundColor= "red";
+                    grade.style.color= "white";
                     grade.innerHTML= "Please enter a valid mark between 0 and 100!!";
                 }else{
+                    grade.style.backgroundColor= "red";
+                    grade.style.color= "white";
                     grade.innerHTML= "Grade E...See me!!⚠️";
                 }
             });
