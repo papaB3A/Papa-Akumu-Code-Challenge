@@ -1,6 +1,7 @@
 # SA.01: WK1: Code Challenge
 
 #### Date: 29th September, 2024
+#### By: Papa Akumu Benedict
 
 ## Description
 This repository contains solutions to three coding challenges:
